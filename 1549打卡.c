@@ -14,6 +14,8 @@
 int in_time[100];
 int out_time[100];
 
+int time[200];
+
 
 int main(int argc, char const *argv[])
 {
@@ -34,74 +36,25 @@ int main(int argc, char const *argv[])
         out_time[i] = TIME_TO_MIN(atoi(time_txt), atoi(time_txt + 3));
     }
 
-    int sum = 0;
-
     for (int i=0; i<n; i++)
     {
-        int single_time = 0;
+        if (out_time[i] - in_time[i])
 
 
-        if ( (in_time[i] < SLEEP_START) && (out_time[i] < SLEEP_START) )
-        {
-            single_time = out_time[i] - in_time[i];
-        }
-        else if ( (in_time[i] < SLEEP_START) && (out_time[i] > SLEEP_START) )
-        {
-            single_time = SLEEP_START - in_time[i];
-        }
-        else if ( (in_time[i] > SLEEP_START) && (out_time[i] < SLEEP_END) )
-        {
-            single_time = 0;
-        }
-        else if ( (in_time[i] < SLEEP_END) && (out_time[i] > SLEEP_END) )
-        {
-            single_time = out_time[i] - SLEEP_START;
-        }
-        else if ( (in_time[i] > SLEEP_END) && (out_time[i] > SLEEP_END) )
-        {
-            single_time = out_time[i] - in_time[i];
-        }
-        else if ( (in_time[i] < SLEEP_START) && (out_time[i] > SLEEP_END) )
-        {
-            single_time = out_time[i] - SLEEP_END +  SLEEP_START - in_time[i];
-        }        
 
-        else if ( (in_time[i] < DINNER_START) && (out_time[i] < DINNER_START) )
-        {
-            single_time = out_time[i] - in_time[i];
-        }
-        else if ( (in_time[i] < DINNER_START) && (out_time[i] > DINNER_START) )
-        {
-            single_time = DINNER_START - in_time[i];
-        }
-        else if ( (in_time[i] > DINNER_START) && (out_time[i] < DINNER_END) )
-        {
-            single_time = 0;
-        }
-        else if ( (in_time[i] < DINNER_END) && (out_time[i] > DINNER_END) )
-        {
-            single_time = out_time[i] - DINNER_START;
-        }
-        else if ( (in_time[i] > DINNER_END) && (out_time[i] > DINNER_END) )
-        {
-            single_time = out_time[i] - in_time[i];
-        }
-        else if ( (in_time[i] < DINNER_START) && (out_time[i] > DINNER_END) )
-        {
-            single_time = out_time[i] - DINNER_END +  DINNER_START - in_time[i];
-        }
-
-        sum += single_time;
-
-        printf("%d\n", single_time);
-
-        // printf("%d ", in_time[i]);
-        // printf("%d\n", out_time[i]);
-
+        time[i] = in_time[i];
+        time[i+1] = out_time[i];
     }
 
-    printf("%d\n", sum);
+    // i 进门，  i + 1 出门
 
+    for (int i=0; i<2*n; i++)
+    {
+
+
+
+
+    }
 
     
 
