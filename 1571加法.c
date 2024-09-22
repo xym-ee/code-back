@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
 
     int l1 = 0;
 
-    /* 找出第一个加数,l1 为长度 */
+    /* 找出第一个加数存放在 num1，长度l1  */
     while (num1[l1++] != '+');
     l1 = l1 - 1;
     num1[l1] = '\0';
@@ -43,7 +43,6 @@ int main(int argc, char const *argv[])
     strcpy(num2, &num1[l1 + 1]);
 
     /* 找小数点位置，让小数点对齐 */
-
     int dot1 = find_dot(num1, l1);
     int dot2 = find_dot(num2, l2);
 
@@ -89,7 +88,6 @@ int main(int argc, char const *argv[])
     }
 
     int carry = 0;
-
     for (int i = sum_len - 2; i>=0; i--)
     {
         switch (sum1[i])
@@ -163,7 +161,34 @@ int main(int argc, char const *argv[])
             break;
         }
     }
-    printf("%g\n",atof(result));
+
+    /* 去掉前后 0 */
+    int start = 0;
+
+    for (int i=0; i<dot-1; i++)
+    {
+        if (result[i] == '0' && start == i)
+        {
+            start++;
+        }
+    }    
+
+    int end = sum_len - 1;
+    for (int i=end; i>dot; i--)
+    {
+        if ( result[i - 1] == '0' && result[i] == '\0')
+        {
+            result[i - 1] = '\0';
+        }
+
+        if ( result[i - 1] == '.' && result[i] == '\0')
+        {
+            result[i-1] = '\0';
+            break;
+        }
+    }
+
+    puts(result + start);
     return 0;
 }
 
